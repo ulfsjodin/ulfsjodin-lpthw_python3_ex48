@@ -27,7 +27,7 @@ lexicon = {
 
 def scan(sentence):
     pass
-    a = []
+    result = []
     """ sentence got its value from scan('input').
         Then it splits it up in parts and will be values 
         for word in the loop.
@@ -40,7 +40,7 @@ def scan(sentence):
 
         """If match it append it plus the wordtype to a. """
         if word in lexicon: #1
-            a.append(pair)
+            result.append(pair)
 
             """ Then it look if it is a number(str). 
             If so it convert it with function convert_int to a integer. 
@@ -56,10 +56,10 @@ def scan(sentence):
                 pair = (wordtype, word)
             
             # This append from conditions #2 and #3
-            a.append(pair)
+            result.append(pair)
 
-    print(a)
-    return a
+    print(result)
+    return result
 
 def convert_int(n):
     try:
