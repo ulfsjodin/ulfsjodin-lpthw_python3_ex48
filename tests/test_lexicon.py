@@ -1,8 +1,9 @@
 
 import pytest
-from ex48 import start 
+from ex48 import lexicon 
 
 #Same kind of test of directions as the Nose test in the book.
+#@pytest.mark.skip(reason='not completed in ex48/test.py')
 def test_directions():
     assert lexicon.scan('south') == [('direction', 'south')]
     result = lexicon.scan('north south east')
@@ -25,14 +26,13 @@ def test_directions():
         ('door',[('noun','door')]), 
         ('cabinet',[('noun','cabinet')]),
         ])
-@pytest.mark.skip(reason='not completed in ex48/test.py')
+#@pytest.mark.skip(reason='not completed in ex48/test.py')
 def test_params(one_in, two_out):
     assert lexicon.scan(one_in) == two_out
 
 #Test to make sure the lexicon is complete.
-@pytest.mark.skip(reason='not completed in ex48/test.py')
 def test_lexikon2():
-    complete_dict = lexicon.lexikon
+    complete_dict = lexicon.lexicon
     assert complete_dict == {
         'north':'direction',
         'south':'direction',
@@ -58,19 +58,22 @@ def test_lexikon2():
         'cabinet':'noun',
         }
 #Test to see that a string of number is converted to integers.
+#@pytest.mark.skip(reason='not completed in ex48/test.py')
 def test_number():
     test_num = lexicon.scan('1234')
-    assert test_num == [('nummer', 1234)]
+    assert test_num == [('number', 1234)]
 
 #I found 'poppycock' on Google translate :-)
 poppycock = 'anything_not_in_lexicon'
 
 #Test to see that a word not in lexicon returns None.
+#@pytest.mark.skip(reason='not completed in ex48/test.py')
 def test_lexikon():
-    blunder = lexicon.lexikon.get(poppycock)
+    blunder = lexicon.lexicon.get(poppycock)
     assert blunder == None
 
 #Test to see a error message occurs
+#@pytest.mark.skip(reason='not completed in ex48/test.py')
 def test_raise_error():
     error_msg = 'error'
     not_in_dict = lexicon.scan(poppycock)
