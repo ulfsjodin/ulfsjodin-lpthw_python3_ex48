@@ -10,6 +10,9 @@ def wordlist_fix():
 def wordlist_error_fix():
     return lexicon.scan('the bear princess kill') # Sentence with Yoda 'grammar' 
 
+@pytest.fixture
+def parse_error_msg():
+    return lexicon.scan('the the the the') # Sentence with Yoda 'grammar' 
 
 def test_Sentence():
     a = Sentence(('noun','princess'), ('verb', 'kill'), ('noun', 'bear'))
@@ -62,12 +65,17 @@ def test_parse_sentence(wordlist_fix):
     assert verb == ('verb', 'kill')
     assert obj == ('noun', 'bear')
 
-def test_error_message():
+def test_error_message_parse_verb(parse_error_msg):
     with pytest.raises(ParserError) as excinfo:
-         parse_sentence([('noun', 'princess'),('bear', 'kill'), ('a', 'error')])
+        parse_verb(parse_error_msg)
     assert str(excinfo.value) == 'Expected a verb next.'
 
-def test_error_message2(wordlist_error_fix):
+def test_error_message_parse_subject(parse_error_msg):
     with pytest.raises(ParserError) as excinfo:
-        parse_sentence(wordlist_error_fix)
+        parse_subject(parse_error_msg)
     assert str(excinfo.value) == 'Expected a verb next.'
+
+def test_error_message_parse_object(parse_error_msg):
+    with pytest.raises(ParserError) as excinfo:
+        parse_object(parse_error_msg)
+    assert str(excinfo.value) == 'Expected a noun or direction next.'
