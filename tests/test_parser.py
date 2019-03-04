@@ -7,10 +7,6 @@ def wordlist_fix():
     return lexicon.scan('the princess kill bear')
 
 @pytest.fixture
-def wordlist_error_fix():
-    return lexicon.scan('the bear princess kill') # Sentence with Yoda 'grammar' 
-
-@pytest.fixture
 def parse_error_msg():
     return lexicon.scan('the the the the') # Sentence with Yoda 'grammar' 
 
@@ -40,7 +36,7 @@ def test_skip(wordlist_fix):
 def test_parse_verb(wordlist_fix):
     skip(wordlist_fix, 'stop')
     match(wordlist_fix, 'expecting') 
-    # "expecting" can be replace to anything to make peek(wordlist_fix) equal to 'verb'
+    # "expecting" can be replaced by anything (even " ") to make peek(wordlist_fix) equal to 'verb'
     # otherwise it only equals 'noun'.  (correct ?) 
     assert peek(wordlist_fix) == 'verb'
 
