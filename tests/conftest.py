@@ -11,4 +11,5 @@ def wordlist_fix():
 
 @pytest.fixture
 def parse_error_msg():
-    return lexicon.scan('the the the the') # Sentence with Yoda 'grammar' 
+    return lexicon.scan('the the the the') 
+# All the "the" is to NOT get a match.
